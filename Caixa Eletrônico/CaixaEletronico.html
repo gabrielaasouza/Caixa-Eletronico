@@ -1,0 +1,168 @@
+<html>
+
+<head>
+
+	<title>Banco Sésamo</title>
+	<link rel="shortcut icon" href="img/moeda.png" type="image/x-icon">
+
+
+	<script>
+
+		var nome = prompt('Qual o seu nome?');
+		alert(`Olá, ${nome}, é um prazer ter você por aqui!`)
+
+
+		var senha = 3589;
+		var saldo = 100.5; 
+
+		function inicio() {
+
+			var escolha = parseInt(prompt('Banco Sésamo \uD83D\uDCB5 \nSelecione uma opção \n1) Saldo \n2) Extrato \n3) Saque \n4) Depósito \n5) Transferência \n6) Sair'));
+
+			switch (escolha) {
+				case 1:
+					ver_saldo();
+					break;
+				case 2:
+					extrato();
+					break;
+				case 3:
+					fazer_saque();
+					break;
+				case 4:
+					fazer_deposito();
+					break;
+				case 5:
+					transferencia();
+					break;
+				case 6:
+					sair();
+					break;
+				case 42:
+					mewmew();
+					break;
+				default:
+					erro();
+					break;
+			}
+		}
+
+		function ver_saldo() {
+			var senha = prompt('Digite sua senha:');
+			if (senha === '3589') {
+				alert('Seu saldo atual é: ' + saldo);
+				inicio();
+			} else {
+				alert('Senha incorreta!');
+				ver_saldo();
+			}
+		}
+
+		function fazer_deposito() {
+			var senha = prompt('Digite sua senha:');
+			if (senha === '3589') {
+				var deposito = parseFloat(prompt('Qual o valor para depósito?'));
+				if (isNaN(deposito) || deposito === '') {
+					alert('Por favor, informe um número:');
+					inicio();
+				} else if (deposito <= 0) {
+					alert('Operação não autorizada');
+					inicio();
+				} else {
+					saldo += deposito;
+					alert(`Depósito realizado com sucesso! Saldo atual: ${saldo}`)
+					inicio();
+				}
+			} else {
+				alert('Senha incorreta!');
+				fazer_deposito();
+			}
+		}
+
+		function fazer_saque() {
+			var senha = prompt('Digite sua senha:');
+			if (senha === '3589') {
+				var saque = parseFloat(prompt('Qual o valor para saque?'));
+				if (isNaN(saque) || saque === '') {
+					alert('Por favor, informe um número:');
+					inicio();
+				} else if (saque > saldo || saque <= 0) {
+					alert('Operação não autorizada.');
+					inicio();
+				} else {
+					saldo -= saque;
+					alert(`Saque realizado com sucesso! Saldo atual: ${saldo}`)
+					inicio();
+				} 
+			} else {
+					alert('Senha incorreta!');
+					fazer_saque();				
+				}
+
+		}
+
+		function extrato() {
+			var senha = prompt('Digite sua senha:');
+			if (senha === '3589') {
+			alert('Extrato atual: \n - R$ 200,00 - TocaBoca Jogos;\n- R$ 35,90 - Saque;\n+ R$ 327,00 - Estacionamento Nova Esperança;');
+			inicio();
+			} else {
+					alert('Senha incorreta!');
+					extrato();				
+				}
+		}
+
+		function transferencia () {
+			var senha = prompt('Digite sua senha:');
+			if (senha === '3589') {
+				var idConta = parseInt(prompt('Informe o número da conta para a transferência (Ele deve ter 4 dígitos):'));
+				if (isNaN(idConta) || idConta === '' || idConta < 1000 || idConta > 9999) {
+					alert('Por favor, informe apenas dados válidos.');
+					inicio();
+				}
+				var transf = parseFloat(prompt('Informe o valor da transferência'));
+				if (isNaN(transf) || transf === '' || transf > saldo || transf <= 0) {
+					alert('Operação não autorizada.');
+					inicio();
+				} else {
+					saldo -= transf;
+					alert(`Transferência realizada com sucesso! Saldo atual: ${saldo}`);
+					inicio();
+				} 
+			}  else {
+					alert('Senha incorreta!');
+					transferencia();				
+				}
+		}
+
+		function mewmew () {
+			document.write('Parece que você encontrou algo. Shhhhh...<br>');
+			document.write('<img src="img/segredo_nao_abra/mewmew.gif">');
+		}
+
+		function erro() {
+			alert('Por favor, informe um número entre 1 e 6');
+			inicio();
+		}
+
+		function sair() {
+			var confirma = confirm('Você deseja sair?');
+			if (confirma) {
+				alert(`${nome}, foi um prazer ter você por aqui!`);
+				window.close();
+			} else {
+				inicio();
+			}
+		}
+
+
+
+		inicio();
+	</script>
+</head>
+
+<body>
+
+</body>
+
+</html>
